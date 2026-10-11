@@ -1548,7 +1548,7 @@
     "category": "ui",
     "subcategory": "render"
   },
-{
+  {
     "id": "dsh-pet-quota",
     "name": "宠物额度气泡",
     "nameEn": "Pet Quota Bubble",
@@ -1558,5 +1558,17 @@
     "repo": "https://github.com/Daizhdd/dsh-pet-quota",
     "category": "utility",
     "subcategory": "stats"
+  },
+  {
+    "id": "dsh-url-router",
+    "name": "地址栏深链",
+    "nameEn": "URL Router",
+    "author": "DDDMUC",
+    "description": "给 DSH Web 的每个界面一个自己的链接：会话、面板、设置（小节与页签）、会话内视图、轨迹行、轮次、右栏 pane 都写进地址栏。侧边栏会话行变成真链接，浏览器原生的右键菜单、中键与 Cmd 点击都能用；点击某一行或某一轮只把位置反映进地址栏，不拦截点击、不碰交互元素。粘贴链接会打开对应界面，轮次链接还会先把历史翻页回那一轮、再滚到它。检测到别的插件写的 fragment 时只报告一次且绝不覆盖；路由健康报告见 window.__dshUrlRouter.report()。只写 fragment、只用 replaceState，任何一步都不抛异常。",
+    "descriptionEn": "Give every surface of the DSH Web GUI its own link: conversations, panels, settings (section and tab), conversation views, trajectory rows, turns and right-bar panes all land in the address bar. Sidebar conversation rows become real anchors, so the native context menu, middle-click and Cmd-click keep working; clicking a row or a turn only reflects the position and never intercepts the click or touches interactive elements. Pasting a link opens that surface, and a turn link pages history back to the turn before scrolling to it. A fragment written by another plugin is reported once and never overwritten, and window.__dshUrlRouter.report() exposes a route health report. Fragment-only writes through replaceState, and no step throws.",
+    "repo": "https://github.com/DDDMUC/dsh-url-router",
+    "npm": "dsh-url-router",
+    "category": "ui",
+    "subcategory": "panel"
   }
 ]
