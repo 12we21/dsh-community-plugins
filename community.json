@@ -1567,6 +1567,7 @@
     "description": "DSH 嵌入式硬件沙盒插件：在 3D 面包板场景里摆放 ESP32 / BME280 / PIR / LED 等器件、按协议与电压校验接线，再让真实 Python 项目代码在环运行、经 Python shim 读虚拟 I2C/GPIO 的寄存器级读数；支持故障注入（断线 / NACK / busy / 强制读数）验证异常处理。另有第二类虚拟硬件——联网设备，主动向真实 HTTP 后端周期上报（已在真实智能选座系统全链路验证）。随插件带 13 个 hw_* 工具与一份 SKILL.md。",
     "descriptionEn": "A DSH embedded hardware sandbox plugin: place ESP32 / BME280 / PIR / LED components on a 3D breadboard scene, wire ports with protocol and voltage checks, then run real Python project code in the loop, reading register-level virtual I2C/GPIO readings through a Python shim; fault injection (disconnect, NACK, busy, forced readings) validates exception handling. A second class of virtual hardware — networked devices — reports periodically over HTTP to a real backend (validated full-chain against a live seat-reservation system). Ships 13 hw_* agent tools and a bundled SKILL.md.",
     "repo": "https://github.com/Noob-stupid/dsh-breadboard",
+    "npm": "@noob-stupid/dsh-breadboard",
     "category": "tools",
     "subcategory": "dev"
   }
