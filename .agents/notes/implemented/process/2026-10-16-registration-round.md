@@ -74,3 +74,73 @@ land, and the required check has to be re-approved after each such push because
 the pull requests come from forks. Reviews that accept an entry but demand a
 rebase say so explicitly, so the next round can tell "needs a rebase" apart from
 "needs a decision".
+
+
+## Second pass, 2026-10-16 (maintenance round)
+
+Correction to the round above: #26 no longer conflicts.
+
+**#26 (dsh-clear-usage) merged**, taking the catalog from 139 to 140 entries. All
+three earlier asks landed - `engines.dsh` is now `>=0.2.0-rc.2`, `engines.node`
+matches the deepseek-harness root, and the overlap with `dsh-usage-panel` is
+written into both descriptions and the upstream README. The head is a pure tail
+append: the other 139 entries compare equal, and the gate plus its nine contract
+tests pass on it. The author force-pushed again despite the earlier instruction,
+which invalidated the previous approval and the approved CI run.
+
+**#39 (dsh-streamfold) needs one sentence fixed.** The entry added in 7f2491b
+claims the official transcript display is restored "on uninstall or when switching
+back to an official mode". Switching back does write the chosen mode
+(`lib/client.js:125`), but the uninstall path only calls `stopOfficialRowHide()`,
+which disconnects an observer and strips two attributes
+(`lib/client.js:3536`); `transcriptView` is written in exactly three places
+(108, 119, 125) and never from a dispose path, so after uninstall the official
+value stays on `verbose`. Structure, provenance and compatibility all pass; only
+the claim is wrong.
+
+**#34 (the Trae2api rename) is not waiting on a maintainer.** Its last commit is
+`2026-10-13T08:50:43Z` and the comment asking for the "automation is off by
+default" clause back is `2026-10-13T15:27:25Z`, so the author has not pushed
+since. `pulls/34/reviews` is empty; the request lives in an issue comment, which
+is why it was easy to misread as an unreviewed submission.
+
+**#27 (cute-fat-fish-pet)** rebuilt its file correctly - the head is `main` plus
+one entry, 140 entries, gate OK - but the commit whose message says `merge` has a
+single parent, so `merge-base` is still `c7852a6` and GitHub keeps reporting
+`CONFLICTING`. The content is right; the fix is a real `git merge origin/main`.
+
+**#33, #32, #38, #36 and #18** were each told that they conflict and why, since
+all six append at the same array tail.
+
+## Decision
+
+Merge #26, request the sentence fix on #39, and tell the conflicted set what to do
+instead of waiting on it. One entry per round stays the rule: #39 and #26 conflict
+with each other, so whichever tries second loses.
+
+No entry was landed with a maintainer commit on top of `main`. That alternative
+clears the backlog in one push at the cost of the contributors' authorship and the
+review trail the catalog depends on.
+
+## Alternatives considered
+
+**Merge #39 and ask #26 to rebase.** #26 was ready and #39 was not; ordering by
+readiness keeps a correct entry from waiting on an incorrect one.
+
+**Accept the #39 wording because upstream is where the description came from.**
+Upstream is where the defect is - `stopOfficialRowHide()` never restores the
+value - so copying it faithfully copies the bug.
+
+**Treat #34's missing clause as already closed.** The catalog is the page a user
+reads before installing an automation plugin; dropping "off by default" is a
+user-visible loss even while the upstream README still carries it.
+
+**Re-approve the CI run for #27.** GitHub does not start `pull_request` workflows
+on a conflicted pull request at all, so there is no run to approve until the
+conflict is resolved.
+
+## Consequences
+
+The Workshop picked up the 140th entry. The tail-append contention now has a
+worked example on both sides: an entry that merged because it was ready, and an
+entry that was held because a sentence contradicted the code it described.
